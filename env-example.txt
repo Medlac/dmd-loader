@@ -1,0 +1,13 @@
+# Copy this to .env and fill in your values
+
+# Supabase Configuration
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# NHSBSA TRUD API Key
+# Register at: https://isd.digital.nhs.uk/trud/users/guest/filters/0/home
+TRUD_API_KEY=your-trud-api-key-here
+
+# dm+d Item ID on TRUD (24 is the standard dm+d release)
+TRUD_ITEM_ID=24
+
