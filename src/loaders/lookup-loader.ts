@@ -15,9 +15,11 @@ const lookupTableMap: Record<string, string> = {
   VIRTUAL_PRODUCT_PRES_STATUS: "lookup_virtual_product_pres_status",
   CONTROL_DRUG_CATEGORY: "lookup_control_drug_category",
   LICENSING_AUTHORITY: "lookup_licensing_authority",
+  LICENSING_AUTHORITY_CHANGE_REASON: "lookup_licensing_authority_change_reason",
   UNIT_OF_MEASURE: "lookup_unit_of_measure",
   FORM: "lookup_form",
   ROUTE: "lookup_route",
+  DT_PAYMENT_CATEGORY: "lookup_dt_payment_category",
   SUPPLIER: "lookup_supplier",
   AVAILABILITY_RESTRICTION: "lookup_availability_restriction",
   LEGAL_CATEGORY: "lookup_legal_category",
@@ -66,15 +68,12 @@ export async function loadLookups(
 
     // Transform to database format
     const dbRecords = records.map((r: LookupInfoRecord) => {
-      // Handle different table structures
+      // Tables with SNOMED codes that have CDDT/CDPREV fields
       if (
         tableName === "lookup_unit_of_measure" ||
         tableName === "lookup_form" ||
         tableName === "lookup_route" ||
-        tableName === "lookup_supplier" ||
-        tableName === "lookup_flavour" ||
-        tableName === "lookup_colour" ||
-        tableName === "lookup_ont_form_route"
+        tableName === "lookup_supplier"
       ) {
         return {
           cd: String(r.CD),
@@ -85,7 +84,7 @@ export async function loadLookups(
         };
       }
 
-      // Simple lookups with string codes
+      // Simple lookups with string/numeric codes (no CDDT/CDPREV in XML)
       return {
         cd: String(r.CD),
         description: r.DESC,

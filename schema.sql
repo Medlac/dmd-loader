@@ -41,6 +41,12 @@ CREATE TABLE IF NOT EXISTS lookup_licensing_authority (
     description TEXT NOT NULL
 );
 
+-- Licensing Authority Change Reason
+CREATE TABLE IF NOT EXISTS lookup_licensing_authority_change_reason (
+    cd VARCHAR(10) PRIMARY KEY,
+    description TEXT NOT NULL
+);
+
 -- Unit of Measure (SNOMED-based codes)
 CREATE TABLE IF NOT EXISTS lookup_unit_of_measure (
     cd BIGINT PRIMARY KEY,
@@ -72,6 +78,12 @@ CREATE TABLE IF NOT EXISTS lookup_supplier (
     cdprev BIGINT,
     description TEXT NOT NULL,
     invalid INTEGER
+);
+
+-- DT Payment Category (Drug Tariff payment categories)
+CREATE TABLE IF NOT EXISTS lookup_dt_payment_category (
+    cd VARCHAR(10) PRIMARY KEY,
+    description TEXT NOT NULL
 );
 
 -- Combination Pack Indicator
@@ -130,13 +142,19 @@ CREATE TABLE IF NOT EXISTS lookup_special_container (
 
 -- Flavour
 CREATE TABLE IF NOT EXISTS lookup_flavour (
-    cd BIGINT PRIMARY KEY,
+    cd VARCHAR(10) PRIMARY KEY,
+    description TEXT NOT NULL
+);
+
+-- DND (Discount Not Deducted)
+CREATE TABLE IF NOT EXISTS lookup_dnd (
+    cd VARCHAR(10) PRIMARY KEY,
     description TEXT NOT NULL
 );
 
 -- Colour
 CREATE TABLE IF NOT EXISTS lookup_colour (
-    cd BIGINT PRIMARY KEY,
+    cd VARCHAR(10) PRIMARY KEY,
     description TEXT NOT NULL
 );
 
@@ -154,7 +172,7 @@ CREATE TABLE IF NOT EXISTS lookup_non_avail_reason (
 
 -- Ontology Form & Route (DM+D specific ontology)
 CREATE TABLE IF NOT EXISTS lookup_ont_form_route (
-    cd BIGINT PRIMARY KEY,
+    cd VARCHAR(10) PRIMARY KEY,
     description TEXT NOT NULL
 );
 
